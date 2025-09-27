@@ -92,7 +92,7 @@ def test_initialization_uses_provided_event_class(type_adapter_init_mock: MagicM
 def test_to_json(event, expected_output, json_serialize_spy):
     handler = HTTPHandler()
 
-    headers, json_repr = handler.to_json(event)
+    _, json_repr = handler.to_json(event)
     json_serialize_spy.assert_called_once_with(event)
     assert json_repr == expected_output
 
@@ -107,7 +107,7 @@ def test_to_json(event, expected_output, json_serialize_spy):
 def test_to_json_batch(event, expected_output, json_serialize_batch_spy):
     handler = HTTPHandler()
 
-    headers, json_repr = handler.to_json_batch([event])
+    _, json_repr = handler.to_json_batch([event])
     json_serialize_batch_spy.assert_called_once_with([event], handler.batch_adapter)
     assert json_repr == expected_output
 
