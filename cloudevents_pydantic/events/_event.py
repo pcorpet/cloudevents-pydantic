@@ -147,7 +147,7 @@ class CloudEvent(BaseModel):
                  data handled.
         """
         model_dict = self.model_dump()
-        if _binary_field_metadata == self.model_fields["data"].metadata:
+        if _binary_field_metadata == self.__class__.model_fields["data"].metadata:
             model_dict["data_base64"] = model_dict["data"]
             del model_dict["data"]
         elif isinstance(model_dict["data"], (bytes, bytearray, memoryview)):
